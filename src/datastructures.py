@@ -8,12 +8,37 @@ update this file to implement the following already declared methods:
 """
 from random import randint
 
+
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
 
         # example list of members
-        self._members = []
+        self._members = [
+            {
+                "id": self._generateId(),
+                "name":"John",
+                "last_name": self.last_name,
+                "age":33,
+                "lucky Numbers" : [7, 13, 22]
+            },
+
+            {
+                "id": self._generateId(),
+                "name":"Jane",
+                "last_name": self.last_name,
+                "age":35,
+                "lucky Numbers" : [10, 14, 3]
+            },
+
+            {
+                "id": self._generateId(),
+                "name":"Jimmy",
+                "last_name": self.last_name,
+                "age":5,
+                "lucky Numbers" : [1]
+            }
+        ]
 
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
@@ -21,16 +46,24 @@ class FamilyStructure:
 
     def add_member(self, member):
         # fill this method and update the return
-        pass
+        self._members.append(member)
+        return True
+        
 
     def delete_member(self, id):
         # fill this method and update the return
-        pass
+        for index in range(len(self._members)):
+            if self._members[index]["id"] == id:
+                self._members.pop(index)
+                return True
 
     def get_member(self, id):
         # fill this method and update the return
-        pass
+        for member in self._members:
+            if member["id"] == id:
+                return member
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
+
